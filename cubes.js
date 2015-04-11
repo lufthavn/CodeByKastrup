@@ -14,14 +14,6 @@
 				container = document.createElement( 'div' );
 				document.getElementById("cubes").appendChild( container );
 
-				var info = document.createElement( 'div' );
-				info.style.position = 'absolute';
-				info.style.top = '10px';
-				info.style.width = '100%';
-				info.style.textAlign = 'center';
-				info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> webgl - interactive cubes';
-				container.appendChild( info );
-
 				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 
 				scene = new THREE.Scene();
@@ -74,12 +66,6 @@
 				var rendererElement = renderer.domElement;
 				rendererElement.id = "render-canvas";
 				container.appendChild(rendererElement);
-
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				container.appendChild( stats.domElement );
-
 				renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 				//
