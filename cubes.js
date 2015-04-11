@@ -86,6 +86,7 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 				window.addEventListener("mousedown", onMouseDown, false);
+				window.addEventListener("touchstart", onMouseDown, false);
 
 			}
 
