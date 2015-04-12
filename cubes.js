@@ -1,3 +1,4 @@
+function cubes(){
 			var container, stats;
 			var camera, scene, raycaster, renderer;
 
@@ -72,7 +73,6 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 				window.addEventListener("mousedown", onMouseDown, false);
-				window.addEventListener("touchstart", onMouseDown, false);
 
 			}
 
@@ -105,9 +105,7 @@
 			function animate() {
 
 				requestAnimationFrame( animate );
-
 				render();
-				stats.update();
 
 			}
 
@@ -174,3 +172,4 @@
 				renderer.render( scene, camera );
 
 			}
+		}
