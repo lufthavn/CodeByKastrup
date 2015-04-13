@@ -31,10 +31,11 @@
 		</div>
 	</div>
 	<div class="content-container">
-	<hr/>
+		<hr/>
 		<h2>Hello there.</h2>
 		<p>I'm Tobias, a 22-year old developer, with a passion for developing for the web. I currently live in Aalborg, Denmark, where I study Applied Computer Science. </p>
 		<p>I feel at home when I'm using high-level languages, and making them play nice with pretty front ends. Being able to toy with new languages, frameworks and concepts is a thing I value highly.</p>
+		<hr />
 		<h2>Some keywords:</h2>
 		<ul class="keywords-list">
 			<li><h3>Languages</h3></li>
@@ -68,6 +69,7 @@
 					<a class="social-link" href="https://dk.linkedin.com/pub/tobias-kastrup-andersen/86/272/692"><i class="fa fa-linkedin"></i></a>
 				</li>
 			</ul>
+			<h3>Contact me at <a class="ema" id="ema"></a></h3>
 		</div>
 	</div>
 
@@ -75,6 +77,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
 		<script src="cubes.js"></script>
 		<script>
+		var em = document.getElementById("ema");
+		var e = "tobias@" + "codebykastrup.com";
+		em.innerText = e
+		em.setAttribute("href", "mailto:" + e)
 		if(Modernizr.webgl)
 		{
 			cubes();
