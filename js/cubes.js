@@ -1,18 +1,23 @@
 function cubes(){
 			var container, stats;
 			var camera, scene, raycaster, renderer;
+			var animationId;
 
 			var mouse = new THREE.Vector2(), INTERSECTED;
 			var radius = 100, theta = 0;
 
 			var shrinkingObjects = [];
 
-			init();
-			animate();
+			//variables for FPS measurement
+			var frameTime = 0, lastLoop = new Date(), thisLoop;
 
-			function init() {
+			//init();
+			//animate();
+
+			var init = function() {
 
 				container = document.createElement( 'div' );
+				container.id = "cubes-container";
 				document.getElementById("cubes").appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
@@ -74,9 +79,15 @@ function cubes(){
 				window.addEventListener( 'resize', onWindowResize, false );
 				window.addEventListener("mousedown", onMouseDown, false);
 
+				setInterval(function(){
+					//divide by 1000, since frameTime is in milliseconds
+				  console.log((1000/frameTime).toFixed(1));
+				  
+				},10000);
+
 			}
 
-			function onWindowResize() {
+			var onWindowResize = function() {
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
@@ -84,7 +95,7 @@ function cubes(){
 
 			}
 
-			function onDocumentMouseMove( event ) {
+			var onDocumentMouseMove = function( event ) {
 
 				event.preventDefault();
 				var canvas = document.getElementById("render-canvas");
@@ -95,22 +106,25 @@ function cubes(){
 
 			}
 
-			function onMouseDown(event){
+			var onMouseDown = function(event){
 				if(INTERSECTED)
 				{
 					shrinkingObjects.push(INTERSECTED);
 				}
 			}
 
-			function animate() {
-
-				requestAnimationFrame( animate );
+			var animate = function() {
+				animationId = requestAnimationFrame( animate );
 				render();
+				calculateFPS();
+			}
 
+			var end = function(){
+				window.cancelAnimationFrame(animationId);
 			}
 
 
-			function render() {
+			var render = function() {
 
 				theta += 0.15;
 
@@ -172,4 +186,23 @@ function cubes(){
 				renderer.render( scene, camera );
 
 			}
+
+			var calculateFPS = function(){
+				//Get the time between this render and the last, and concurrently assigning the current time to thisLoop
+				var thisFrameTime = (thisLoop = new Date) - lastLoop;
+
+				//increment frametime with the difference between thisFrameTime and frameTime, 
+				//divided by 20, to "flatten" the average.
+				frameTime += (thisFrameTime - frameTime) / 20;
+
+				//assign the current loop as the last, so it can be used next time.
+				lastLoop = thisLoop;
+			}
+
+			return{
+				init: init,
+				animate: animate,
+				end: end
+			}
+
 		}

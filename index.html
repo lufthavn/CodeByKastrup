@@ -23,7 +23,7 @@
 	</head>
 	<body>
 
-	<div id="cubes" class="cubes static-size">
+	<div id="cubes" class="static-size">
 		<div class="name">
 			<img class="me" src="assets/Sunglasses.jpg"/>
 			<h1>Tobias Kastrup Andersen</h1>
@@ -80,8 +80,37 @@
 		<script>
 			if(Modernizr.webgl)
 			{
-				cubes();
+				var animate = true;
+
+				var cubes = cubes();
+				cubes.init();
+				cubes.animate();
 				document.getElementById("cubes").className = "cubes";
+
+				var button = document.createElement("button");
+				button.className = "cube-toggle";
+				button.id = "cube-toggle";
+				button.onclick = toggleCubes;
+
+				var icon = document.createElement("i");
+				icon.className = "fa fa-pause fa-fw";
+
+				button.appendChild(icon);
+				document.getElementById("cubes").appendChild(button);
+
+
+				function toggleCubes(event){
+					if(animate){
+						cubes.end();
+						animate = false;
+						icon.className = "fa fa-play fa-fw";
+					}else{
+						cubes.animate();
+						animate = true;
+						icon.className = "fa fa-pause fa-fw";
+					}
+				}
+
 			}else{
 				var image = document.createElement('div');
 				image.className = "poster";
