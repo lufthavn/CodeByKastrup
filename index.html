@@ -80,41 +80,52 @@
 		<script>
 			if(Modernizr.webgl)
 			{
-				var animate = true;
-
-				var cubes = cubes();
-				cubes.init();
-				cubes.animate();
-				document.getElementById("cubes").className = "cubes";
-
-				var button = document.createElement("button");
-				button.className = "cube-toggle";
-				button.id = "cube-toggle";
-				button.onclick = toggleCubes;
-
-				var icon = document.createElement("i");
-				icon.className = "fa fa-pause fa-fw";
-
-				button.appendChild(icon);
-				document.getElementById("cubes").appendChild(button);
+				try{
 
 
-				function toggleCubes(event){
-					if(animate){
-						cubes.end();
-						animate = false;
-						icon.className = "fa fa-play fa-fw";
-					}else{
-						cubes.animate();
-						animate = true;
-						icon.className = "fa fa-pause fa-fw";
+					var animate = true;
+
+					var cubes = cubes();
+					cubes.init();
+					cubes.animate();
+					document.getElementById("cubes").className = "cubes";
+
+					var button = document.createElement("button");
+					button.className = "cube-toggle";
+					button.id = "cube-toggle";
+					button.onclick = toggleCubes;
+
+					var icon = document.createElement("i");
+					icon.className = "fa fa-pause fa-fw";
+
+					button.appendChild(icon);
+					document.getElementById("cubes").appendChild(button);
+
+
+					function toggleCubes(event){
+						if(animate){
+							cubes.end();
+							animate = false;
+							icon.className = "fa fa-play fa-fw";
+						}else{
+							cubes.animate();
+							animate = true;
+							icon.className = "fa fa-pause fa-fw";
+						}
 					}
+				}catch(e){
+					fallback();
 				}
-
 			}else{
-				var image = document.createElement('div');
+				fallback();
+			}
+
+			function fallback(){
+								var image = document.createElement('div');
 				image.className = "poster";
-				document.getElementById("cubes").appendChild(image);
+				var hero = document.getElementById("cubes");
+				hero.className = hero.className.replace("cubes", "");
+				hero.appendChild(image);
 			}
 		</script>
 
