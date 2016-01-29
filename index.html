@@ -33,7 +33,11 @@
 	<div class="content-container">
 		<hr/>
 		<h2>Hello there.</h2>
-		<p>I'm Tobias, a 22-year old developer, with a passion for developing for the web. I currently live in Aalborg, Denmark, where I study Applied Computer Science. </p>
+		<p>I'm Tobias, a <span id="age"></span>-year old developer, with a passion for developing for the web. I currently live in Aalborg, Denmark, where I study Applied Computer Science. </p>
+		<script>
+			var birthday = new Date(1993,1,28);
+			document.getElementById("age").innerText = new Date().getFullYear() - birthday.getFullYear();
+		</script>
 		<p>I feel at home when I'm using high-level languages, and making them play nice with pretty front ends. Being able to toy with new languages, frameworks and concepts is a thing I value highly.</p>
 		<hr />
 		<h2>Some keywords:</h2>
