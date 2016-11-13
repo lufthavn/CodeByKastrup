@@ -37,9 +37,12 @@ function cubes(){
 				for ( var i = 0; i < 2000; i ++ ) {
 
 					var value = Math.random() * 0xFF | 0xcc;
-					var grayscale = (value << 16) | (value << 8) | value;
+					var r = Math.random() * 0xFF; 
+					var g = Math.random() * 0xFF;
+					var b = Math.random() * 0xFF;
+					var color = (r << 16) | (g << 8) | b;
 
-					var material = new THREE.MeshLambertMaterial( { color:  grayscale } );
+					var material = new THREE.MeshLambertMaterial( { color:  color } );
 					material.transparent = true;
 					material.opacity = 0.95;
 
