@@ -1,1 +1,1 @@
-!function(){var t=document.getElementById("ema"),e="tobiaskastrup"+"andersen@gmail.com";t.innerText=e,t.setAttribute("href","mailto:"+e)}();
+!function(){var t=document.getElementById("ema"),e="tk"+"a@softsense.dk";t.innerText=e,t.setAttribute("href","mailto:"+e)}();
